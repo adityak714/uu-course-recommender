@@ -114,20 +114,6 @@ const Index = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-20 bg-primary text-primary-foreground">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-4xl font-bold mb-6">Ready to Start Your Journey?</h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-              Join thousands of students from around the world at one of Europe's top universities.
-            </p>
-            <Button size="lg" variant="secondary" className="animate-pulse-glow" asChild>
-              <a href="https://www.uu.se/en/admissions/apply" target="_blank" rel="noopener noreferrer">
-                Apply Now
-              </a>
-            </Button>
-          </div>
-        </section>
       </main>
 
       <Footer />
