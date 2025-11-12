@@ -24,6 +24,7 @@ const Recommender = () => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -32,6 +33,11 @@ const Recommender = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  useEffect(() => {
+    // Focus on header div on mount to prevent input auto-focus
+    headerRef.current?.focus();
+  }, []);
 
   const findRelevantCourses = (query: string) => {
     const keywords = query.toLowerCase().split(" ");
@@ -101,7 +107,7 @@ const Recommender = () => {
       
       <main className="flex-1 container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8">
+          <div ref={headerRef} tabIndex={-1} className="text-center mb-8 outline-none">
             <div className="inline-flex items-center gap-2 mb-4">
               <Sparkles className="h-8 w-8 text-primary" />
               <h1 className="text-4xl font-bold">Course Recommender</h1>
