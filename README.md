@@ -1,6 +1,6 @@
 <h1>Uppsala University Course Recommendation Provider</h1>
 
-> Built from Students, for Students, Applicants and Exchange Students. Prototype made using Lovable - view our website [here](https://lovable.dev/projects/b553733a-b300-4b8d-a06a-5f2c9ca133aa)! 
+> Built from Students, for Students, Applicants and Exchange Students. Prototype made using Lovable - view our website [here](https://uu-explore-bot.lovable.app/)! 
 
 <img width="auto" height="840" alt="Screenshot 2025-11-12 at 20 21 50" src="https://github.com/user-attachments/assets/8ca045aa-dcf7-47a8-a531-aee346ec341a" />
 <img width="100%" height="auto" alt="Screenshot 2025-11-12 at 20 22 24" src="https://github.com/user-attachments/assets/9beb4f84-7df9-4699-85e9-e1dc1949618d" />
