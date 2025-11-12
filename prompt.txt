@@ -1,0 +1,95 @@
+Build a Chat-GPT Style University Course Finder website for new or interested applicants at Uppsala University. It must be a ready-to-run Lovable project: produce the front-end, back-end, sample data, and all HTML/CSS/JS filler required for a complete prototype.
+
+High-level requirements
+* Purpose: let prospective students ask an assistant chatbot-style website to find, filter, and explore courses based on applicant’s interests, field, and degree level.
+* Pages/routes: /home (hero + search + chatbot), /find-course (filters + results), /course/:id (details), /faculties, /admissions, /contact, 404 page. With any navigation to another part of the website, set the scroller position to the topmost part of the page, all the time, in every page.
+* Provide 10–15 realistic sample course records in JSON.
+
+Design / Branding inputs (required fields Lovable must prompt me for)
+* university_name: string
+* logo_image: file or URL
+* fonts: list (primary font, secondary font) — MUST use the Work Sans font (Microsoft), also used by Uppsala University.
+* colors: #f5f5f5 , #9c0000, #ebebeb (BACKGROUND), #4d0000
+* rounded_radius: small|medium|large (controls border-radius)
+* shadow_level: none|small|medium|large
+
+Front-end (must be produced as React or Next.js + Tailwind)
+* Use the provided fonts and map colors to CSS variables (e.g., --color-primary).
+* Responsive, mobile-first layout with breakpoints for sm/md/lg/xl.
+* Semantic HTML5 structure: header, nav, main, aside, footer.
+* Accessibility: skip link, ARIA labels, keyboard focus states, contrast-aware components.
+* Global meta tags and favicon placeholder.
+
+UI Components & HTML/CSS/JS filler to include (concrete)
+* Header: logo (left), nav links, search icon, "Apply" CTA (right). Include mobile hamburger.
+* Hero section: (uppsala_uni.jpg) tagline, 1-line description, primary CTA, secondary CTA.
+* Search box (site-wide, ChatGPT style): text input with placeholder "Search courses, keywords or faculty", clear button, voice-search icon (non-functional), accessible label. A chatbot-style interface that will give you recommendations about courses from looking at either the web, uu.se website, or course objects in the database.
+* Filters panel (collapsible on mobile): faculty, degree_level, duration, campus, mode_of_study, keywords (tag chips), fee_range slider, entry_requirement checkbox options.
+* Recommendation form: multi-select interests, preferred mode, desired degree level, submit — returns recommended courses via keyword matching.
+* Favorites: Save to favorites (stores in localStorage), Favorites page or modal listing saved courses.
+* Loading/skeleton states for lists and cards.
+* Pagination and infinite-scroll toggle (configurable).
+* Client-side validation for contact/recommendation forms (HTML5 + JS).
+* Toast notifications for saved, shared, applied actions.
+* Error states: no results, API failure mock.
+
+Concrete HTML/CSS/JS behaviors Lovable must generate
+* CSS variables defined from colors; Tailwind config extended to use them.
+* Utility classes for rounded/shadow set from rounded_radius and shadow_level.
+* Debounced search (300ms) and fuzzy keyword matching for name/description/keywords.
+* Client-side /api mock endpoints implemented (Express or built-in mock server):
+    * GET /api/courses — supports query params: q, faculty, degree_level, duration, campus, mode, limit, offset
+    * GET /api/courses/:id
+    * POST /api/search — accepts filters payload and returns paginated results
+    * POST /api/recommend — accepts interests array, returns top 5 matches
+    * GET /api/faculties
+* Server returns realistic response times (simulate 300–800ms) and occasional 500 error scenario for testing error UI.
+* Option 1: use Supabase if you have access to it, to store course information and schema. 
+* Only follow Option 2 if Option 1 is not feasible. Option 2: Implement localStorage-based favorites and store schema.
+
+Sample data
+* Include a data/courses.json with 12 sample courses covering at least 4 faculties and varying degree levels, durations, keywords, fees, deadlines, pre-requisites and modes (flexible, online or on-campus attendance). Ensure keywords include terms like “Embedded Systems”, “AI", “Battery Technology”, “Sustainability", “Industrial Engineering“, “Computer Science”, “Biotechnology”.
+
+CTA button text options (provide list; pick defaults but make configurable)
+* Primary CTAs: ["Start Exploring", "Find Courses", "Search Programs", "Begin Application"]
+* Secondary CTAs: ["View Details", "Save for Later", "Contact Uppsala University“]
+* Action CTAs on course page: ["Apply Now", "Request Info", "Add to Favorites"]
+
+The courses that are stored in storage look like the following (two example JSON objects):
+{"Link": "https://www.uu.se/en/study/course/applied-sustainability-studies", "Course_name": "Applied Sustainability Studies", "period": "Spring 2026", "credits": "30", "level": "Bachelor's level", "language": "English", "location": "Uppsala", "entry_requirements": "60 credits", "selection": "Higher education credits (maximum 165 credits)", "teaching_form": "On-campus", "course_content": "The course gives a broad orientation to complex sustainability dilemmas on different levels. In a multidisciplinary series of lectures with invited guest lecturers, the most serious sustainability challenges of today are discussed, as well as the roles, strategies, scope of action and limitations of various actors to solve these problems.The course aims to provide an understanding of how these actors - such as governments, businesses, civil society and international organizations - contribute to social change and sustainable development. … creating a student-centred learning environment.", "Learning_outcomes": "On the completion of the course the student should be able to:\nfrom cross disciplinary perspective account for important local and global sustainability issues;\ndescribe and coompare different societal actors' strategies, roles, scope for action and limitations in the pursuit of a sustainable society;\ncritically discuss the interplay between individual and actor actions and the structural/systemic conditions that shape social change;\ncritically discuss their own role and personal responsibility in relation to both the causes of and solutions to sustainability challenges at local and global levels.", "Instruction": "The teaching consists of lectures, seminars and workshops. The lectures are given by guest lecturers from various academic disciplines and relevant areas of society. Ample opportunities are provided for active student participation and critical reflection.", "Assessment": "The student is examined through written preparation for (2 credits) and active participation in seminars and workshops (1.5 credits), and through written documentation (3.5 credits) and oral presentation (0.5 credits) of a project.\nIf there are special reasons for doing so, an examiner may make an exception from the method of assessment indicated and allow a student to be assessed by another method. An example of special reasons might be a certificate regarding special pedagogical support from the University's disability coordinator.", "Syllabus": "https://www.uu.se/en/study/syllabus?query=51114"}
+
+{"Link": "https://www.uu.se/en/study/course/biology", "Course_name": “Deep Learning”, "period": "Autumn 2025", "credits": "60", "level": "Bachelor's level", "language": "Swedish", "location": “Uppsala”, "entry_requirements": "General entry requirements and Mathematics 3b or 3c/Mathematics C, Science Studies 2", "selection": "Final school grades (66%) - Swedish Scholastic Aptitude Test (34%)", "teaching_form": "Distance learning", "course_content": "NaN", "Learning_outcomes": "NaN", "Instruction": "NaN", "Assessment": "NaN", "Syllabus": "https://www.uu.se/en/study/syllabus?query=51632"}
+
+{"Link": "https://www.uu.se/en/study/course/business-studies-a", "Course_name": "Business Studies A", "period": "Autumn 2025", "credits": "30", "level": "Bachelor's level", "language": "Swedish", "location": "Uppsala", "entry_requirements": "General entry requirements", "selection": "Final school grades (60%) - Swedish Scholastic Aptitude Test (40%)", "teaching_form": "On-campus", "course_content": "Management control involves the use of economic controls in order to influence the behavior of employees and managers to achieve the goals of firms or other organizations. After completing the course, the student should be able to independently:\nidentify the basic concepts and relationships of management control,\napply such concepts and relationships in computations of various calculation models,\ndetermine in which situations different calculation models are suitable to use.", "Instruction": "Lectures, practical exercises, written group task, seminar.", "Assessment": "The student will get one single grade, equivalent to 7.5 credits.\nThe examination takes place through an individual written test. Grading criteria are presented in the study guide that applies to the course section. The following grades will be used, pass with distinction (VG), pass (G) and fail (U). Examinations handed in late will not be assessed except under special circumstances. Any remaining supplemental work must be handed in by the deadline specified in the study guide.\nFor students who have not received a passing grade for the course, there is the opportunity to be examined via a reexam at future course sections.\nIf there are special reasons for doing so, an examiner may make an exception from the method of assessment indicated and allow a student to be assessed by another method. An example of special reasons might be a certificate regarding special pedagogical support from the University's disability coordinator.\nUppsala University does not accept cheating or plagiarism. Suspected incidents of cheating or plagiarism are reported to the Vice-Chancellor, which may issue a formal warning to the student or suspend the student from studies for a certain period.\nNOTE: Only completed courses can count toward a degree.", "Syllabus": "https://www.uu.se/en/study/syllabus?query=51408"}
+
+Developer / Export settings
+* Provide index.html meta, manifest, robots.txt.
+* Exportable code structure:
+    * /src/components/*
+    * /src/pages/*
+    * /src/styles/* (Tailwind + CSS variables)
+    * /src/data/courses.json
+    * /src/api/* (mock server)
+    * /public/* (favicon, logos)
+* Include README with instructions to run dev server, build, and integrate with a real DB (example: Supabase or SQLite migration script).
+
+Output format required from Lovable
+* Full project ZIP or repository scaffold with the files above.
+* A single editable prompt summary at top of project (so designers can quickly edit fonts, colors, logo, university_name, CTA texts).
+* Do not include extra explanatory text — only generate the project scaffold and the editable top-of-project prompt fields.
+
+——
+• Background: an off-white #f5f5f5 with a minimal, repeating pattern.
+ 
+**Interactive Map**: world SVG; This will be showing where the Uppsala University students come from, and conveys a message that we have a student community from a diverse range of countries and regions around the world.
+
+—Micro‑Interactions— 
+• **Scroll-Linked Depth**: each section’s BG gradient shifts angle by 15° as user scrolls. 
+• **Button Wave**: CSS `clip-path` wave mask sweeps across primary CTAs on hover. 
+• **Data Point Ripples**: clicking any chart point emits CSS ripple circle.
+
+—Landing Page Flow— 
+• Chatbot for users to ask about their courses, or entry requirements (ChatGPT Style Chatbot Box) → Map Interaction → Call to Action (“Get Your Free Analysis”) 
+• CTA uses background colour (#870000), text colour (#f5f5f5), pulse + glow loop. 
+
+Pages: Home (the main place where students will search for, aligning to their interests, where the chatbot is located below the first CTA (call to action) title), Courses (course cards generally provided at the university), Resources (e.g. other websites that students can use in their university application process), Contact (give contact information to different departments in Uppsala University, and to the main Admission Department, Exchange Department, coordinators of programmes etc, Postbox Address of the Main Campus etc.). 
