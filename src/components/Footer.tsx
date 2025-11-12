@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <img src={logo} alt="Uppsala University" className="h-12 w-auto mb-4 brightness-0 invert" />
+            <img src={logo} alt="Uppsala University" className="h-12 w-auto mb-4" />
             <p className="text-sm text-secondary-foreground/80">
               Founded in 1477, Uppsala University is a comprehensive research university
               ranked among the world's top 100 universities.
