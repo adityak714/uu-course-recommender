@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, Globe, BookOpen, Users } from "lucide-react";
+import { Search, Globe, BookOpen, Users, Sparkles } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CourseCard from "@/components/CourseCard";
+import ChatBot from "@/components/ChatBot";
 import coursesData from "@/data/courses.json";
 import heroImage from "@/assets/uppsala-uni.jpg";
 
@@ -43,6 +44,24 @@ const Index = () => {
               <Button size="lg" variant="outline" asChild className="bg-white/10 backdrop-blur">
                 <Link to="/courses">Browse Courses</Link>
               </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* AI Chatbot Section */}
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center gap-2 mb-4">
+                  <Sparkles className="h-8 w-8 text-primary" />
+                  <h2 className="text-3xl font-bold">Course Recommender</h2>
+                </div>
+                <p className="text-muted-foreground">
+                  Chat with our AI assistant to discover courses that match your interests
+                </p>
+              </div>
+              <ChatBot />
             </div>
           </div>
         </section>
